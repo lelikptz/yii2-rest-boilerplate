@@ -4,7 +4,6 @@ namespace app\models;
 
 use Exception;
 use Yii;
-use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -20,6 +19,7 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
+ * @property integer $access_token
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -29,7 +29,6 @@ class User extends ActiveRecord implements IdentityInterface
     public const STATUS_DELETED = 0;
     public const STATUS_INACTIVE = 9;
     public const STATUS_ACTIVE = 10;
-
 
     /**
      * {@inheritdoc}
@@ -70,11 +69,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
-     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        return static::findOne(['access_token' => $token]);
     }
 
     /**

@@ -26,9 +26,19 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
+            'rules' => [
+                ['class' => yii\rest\UrlRule::class, 'controller' => 'user'],
+            ],
         ],
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
+            'formatters' => [
+                yii\web\Response::FORMAT_JSON => [
+                    'class' => yii\web\JsonResponseFormatter::class,
+                    'prettyPrint' => YII_DEBUG,
+                    'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
+                ],
+            ],
         ],
         'log' => [
             'targets' => [
@@ -45,6 +55,7 @@ return [
         ],
         'user' => [
             'identityClass' => app\models\User::class,
+            'enableSession' => false
         ],
     ],
     'aliases' => ['@bower' => '@vendor/bower-asset', '@npm' => '@vendor/npm-asset',],
