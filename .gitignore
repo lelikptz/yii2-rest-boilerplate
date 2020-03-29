@@ -1,6 +1,4 @@
 .idea
-docker/mysql
-!docker/mysql/.gitkeep
 app/config/main-local.php
 app/config/params-local.php
 app/config/console-local.php
@@ -8,11 +6,3 @@ docker-compose.yml
 app/web/index.php
 app/web/robots.txt
 yii
-app/runtime/*
-!app/runtime/.gitkeep
-app/web/assets/*
-!app/web/assets/.gitkeep
-logs/*
-!logs/.gitkeep
-vendor/*
-!vendor/.gitkeep

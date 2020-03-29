@@ -43,6 +43,9 @@ return [
             'class' => yii\caching\FileCache::class,
             'cachePath' => dirname(__DIR__) . '/runtime/cache',
         ],
+        'user' => [
+            'identityClass' => app\models\User::class,
+        ],
     ],
     'aliases' => ['@bower' => '@vendor/bower-asset', '@npm' => '@vendor/npm-asset',],
     'params' => $params,
