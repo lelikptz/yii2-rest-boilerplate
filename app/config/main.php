@@ -1,5 +1,7 @@
 <?php
 
+Yii::setAlias('@yii/gii', dirname(__DIR__, 2) . '/vendor/yiisoft/yii2-gii');
+
 $params = array_merge(
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
@@ -11,8 +13,8 @@ return [
     'language' => 'ru-RU',
     'timeZone' => 'Europe/Moscow',
     'homeUrl' => '/',
-    'basePath' => dirname(__DIR__, 2),
-    'runtimePath' => dirname(__DIR__) . '/runtime',
+    'basePath' => dirname(__DIR__),
+    'vendorPath' => dirname(__DIR__) . '/../vendor',
     'controllerNamespace' => 'app\controllers',
     'components' => [
         'request' => [
