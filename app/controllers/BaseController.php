@@ -4,14 +4,14 @@ namespace app\controllers;
 
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\ContentNegotiator;
-use yii\rest\ActiveController;
+use yii\rest\Controller;
 use yii\web\Response;
 
 /**
  * Class BaseController
  * @package app\controllers
  */
-class BaseController extends ActiveController
+class BaseController extends Controller
 {
     /** @var bool */
     public $enableCsrfValidation = true;

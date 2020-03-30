@@ -18,6 +18,8 @@ return [
     'controllerNamespace' => 'app\controllers',
     'components' => [
         'request' => [
+            'class' => yii\web\Request::class,
+            'enableCookieValidation' => false,
             'parsers' => [
                 'application/json' => yii\web\JsonParser::class,
             ],
@@ -26,9 +28,6 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
-            'rules' => [
-                ['class' => yii\rest\UrlRule::class, 'controller' => 'user'],
-            ],
         ],
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
@@ -55,7 +54,8 @@ return [
         ],
         'user' => [
             'identityClass' => app\models\User::class,
-            'enableSession' => false
+            'enableSession' => false,
+            'loginUrl' => null,
         ],
     ],
     'aliases' => ['@bower' => '@vendor/bower-asset', '@npm' => '@vendor/npm-asset',],

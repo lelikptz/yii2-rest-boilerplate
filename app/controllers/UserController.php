@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\User;
+use yii\data\ActiveDataProvider;
 
 /**
  * Class UserController
@@ -11,4 +12,14 @@ use app\models\User;
 class UserController extends BaseController
 {
     public $modelClass = User::class;
+
+    /**
+     * @return ActiveDataProvider
+     */
+    public function actionList()
+    {
+        return new ActiveDataProvider([
+            'query' => User::find(),
+        ]);
+    }
 }

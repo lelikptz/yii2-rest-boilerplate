@@ -19,7 +19,7 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
- * @property integer $access_token
+ * @property string $access_token
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -73,6 +73,14 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return static::findOne(['access_token' => $token]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function setAccessToken()
+    {
+        $this->access_token = Yii::$app->security->generateRandomString();
     }
 
     /**
@@ -226,6 +234,7 @@ class User extends ActiveRecord implements IdentityInterface
             'id',
             'username',
             'email',
+            'status',
         ];
     }
 }
