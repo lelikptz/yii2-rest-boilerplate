@@ -1,4 +1,5 @@
 .idea
+.php_cs.cache
 app/config/main-local.php
 app/config/params-local.php
 app/config/console-local.php

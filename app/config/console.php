@@ -18,7 +18,7 @@ return [
                 [
                     'class' => yii\log\FileTarget::class,
                     'logFile' => dirname(__DIR__, 2) . '/logs/console.log',
-                    'levels' => ['error', 'warning']
+                    'levels' => ['error', 'warning'],
                 ],
             ],
         ],

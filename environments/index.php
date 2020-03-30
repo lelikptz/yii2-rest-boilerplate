@@ -52,6 +52,7 @@ return [
         'setExecutable' => [
             'yii',
             'start.sh',
+            'docker-php-cs',
         ],
         'setCookieValidationKey' => [
             'app/config/main-local.php',

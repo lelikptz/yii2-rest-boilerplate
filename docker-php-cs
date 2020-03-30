@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec rest-container /var/www/html/vendor/bin/php-cs-fixer "$@"
