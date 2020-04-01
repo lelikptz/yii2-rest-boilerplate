@@ -16,8 +16,8 @@ class LoginForm extends Model
     public string $username = '';
     /** @var string */
     public string $password = '';
-    /** @var User */
-    private User $user;
+    /** @var User|null */
+    private $user;
 
     /**
      * {@inheritdoc}
@@ -65,7 +65,7 @@ class LoginForm extends Model
      *
      * @return User|null
      */
-    protected function getUser(): User
+    protected function getUser()
     {
         if ($this->user === null) {
             $this->user = User::findByUsername($this->username);

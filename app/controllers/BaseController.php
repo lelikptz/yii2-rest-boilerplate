@@ -14,7 +14,7 @@ use yii\web\Response;
 class BaseController extends Controller
 {
     /** @var bool */
-    public $enableCsrfValidation = true;
+    public $enableCsrfValidation = false;
 
     /**
      * @return array
@@ -31,5 +31,23 @@ class BaseController extends Controller
         $behaviors['authenticator'] = ['class' => HttpBearerAuth::class];
 
         return $behaviors;
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    public function success(array $data): array
+    {
+        return ['success' => true, 'data' => $data];
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    public function error(array $data): array
+    {
+        return ['success' => false, 'data' => $data];
     }
 }

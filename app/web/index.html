@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Rest</title>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="css/styles.css" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hello world</title>
 </head>
 <body>
-<h1>Rest</h1>
+<div id="app">
+    <div class="login">
+        <div class="form" v-if="isGuest">
+            <h1>{{ message }}</h1>
+            <form method="post" @submit.prevent="login">
+                <input type="text"
+                       placeholder="Login"
+                       @focus="form.username.error = false"
+                       :class="{'error': form.username.error}"
+                       v-model="form.username.value"/>
+                <input type="password"
+                       placeholder="Password"
+                       @focus="form.password.error = false"
+                       :class="{'error': form.password.error}"
+                       v-model="form.password.value"/>
+
+                <button type="submit" class="btn btn-primary btn-block btn-large">Enter</button>
+            </form>
+        </div>
+        <div class="page" v-if="!   isGuest">
+            <h1>Успешно!</h1>
+            <div class="btn btn-primary btn-block btn-large">Список пользователей</div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\LoginForm;
 use Exception;
+use Throwable;
 use Yii;
 
 /**
@@ -25,16 +26,16 @@ class SiteController extends BaseController
 
     /**
      * @return array
-     * @throws Exception
+     * @throws Throwable
      */
     public function actionLogin()
     {
         $model = new LoginForm();
-        $model->load(Yii::$app->getRequest()->getBodyParams());
+        $model->load(Yii::$app->getRequest()->getBodyParams(), '');
         if ($model->login() && $model->generateAccessToken()) {
-            return ['access_token' => Yii::$app->user->access_token];
+            return $this->success(['access_token' => Yii::$app->user->getIdentity()->getAccessToken()]);
         }
 
-        return $model->getErrors();
+        return $this->error($model->getErrors());
     }
 }
