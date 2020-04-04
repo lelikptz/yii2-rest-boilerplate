@@ -163,3 +163,7 @@ input:focus {
 form .error {
     border-color: red;
 }
+
+.mb-5 {
+    margin-bottom: 5px;
+}

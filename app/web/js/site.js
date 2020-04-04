@@ -1,29 +1,60 @@
 $(function () {
     new Vue({
         el: '#app',
+        mounted () {
+            let token = localStorage.getItem('token')
+            if (token) {
+                this.isGuest = false
+            }
+        },
         methods: {
             login () {
                 let data = {
                     username: this.form.username.value,
                     password: this.form.password.value,
                 }
-                this.send('/site/login', data,
+                this.send('POST', '/site/login', data,
                     (data) => {
-                        console.log(data);
-                        this.isGuest = false
+                        if (data.access_token) {
+                            localStorage.setItem('token', data.access_token)
+                            this.isGuest = false
+                        }
                     },
                     (data) => {
                         for (let key in data) {
-                            this.form[key].error = true
+                            if (this.form.hasOwnProperty(key)) {
+                                this.form[key].error = true
+                            }
                         }
-                        this.isGuest = true
+                        this.logout()
                     })
             },
-            send (url, data, success, error) {
+            userList () {
+                this.send('GET', '/user/list', {},
+                    (data) => {
+                        alert(JSON.stringify(data))
+                    },
+                    (data) => {
+                        console.log(data)
+                        alert('Не удалось получить список пользователей')
+                    })
+            },
+            logout () {
+                this.isGuest = true
+                localStorage.setItem('token', '')
+            },
+            send (method, url, data, success, error) {
                 $.ajax({
-                    method: 'POST',
+                    method: method,
                     url: url,
                     data: data,
+                    beforeSend: (xhr) => {
+                        let token = localStorage.getItem('token')
+                        if (token) {
+                            xhr.setRequestHeader('Authorization',
+                                'Bearer ' + token)
+                        }
+                    },
                 }).done((response) => {
                     if (response.success) {
                         success(response.data)
@@ -32,7 +63,6 @@ $(function () {
                     }
                 }).fail(() => {
                     alert('error')
-                    this.isGuest = true
                 })
             },
         },

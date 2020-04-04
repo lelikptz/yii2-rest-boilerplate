@@ -28,7 +28,8 @@
         </div>
         <div class="page" v-if="!   isGuest">
             <h1>Успешно!</h1>
-            <div class="btn btn-primary btn-block btn-large">Список пользователей</div>
+            <div class="btn btn-primary btn-block btn-large mb-5" @click="userList">Список пользователей</div>
+            <div class="btn btn-primary btn-block btn-large" @click="logout">Выход</div>
         </div>
     </div>
 </div>

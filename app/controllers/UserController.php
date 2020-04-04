@@ -14,12 +14,14 @@ class UserController extends BaseController
     public $modelClass = User::class;
 
     /**
-     * @return ActiveDataProvider
+     * @return array
      */
     public function actionList()
     {
-        return new ActiveDataProvider([
+        $users = (new ActiveDataProvider([
             'query' => User::find(),
-        ]);
+        ]))->getModels();
+
+        return $this->success($users);
     }
 }
